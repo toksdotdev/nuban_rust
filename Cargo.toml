@@ -1,0 +1,6 @@
+[package]
+name = "nuban_rust"
+version = "0.1.0"
+authors = ["Tochukwu Nkemdilim"]
+
+[dependencies]

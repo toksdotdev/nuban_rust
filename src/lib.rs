@@ -1,0 +1,72 @@
+#[derive(Debug)]
+pub struct Nuban {
+    bank_code: String,
+    serial_number: String,
+}
+
+impl Nuban {
+    pub fn new(bankcode: &str, serialnumber: &str) -> Nuban {
+        Nuban {
+            bank_code: String::from(bankcode),
+            serial_number: String::from(serialnumber),
+        }
+    }
+
+
+    pub fn full(&mut self) -> String {
+        let full_nuban =
+            self.bank_code.clone() + &self.serial_number.clone() + &self.check_digit().to_string();
+
+        full_nuban
+    }
+
+    // Returns the check digit
+    pub fn check_digit(&self) -> u8 {
+        let mut sum: u8 = 3
+            * (&self.index(0) + &self.index(2) + &self.index(3) + &self.index(5) + &self.index(6)
+                + &self.index(8) + &self.index(9) + &self.index(11));
+
+        sum += 7 * (&self.index(1) + &self.index(4) + &self.index(7) + &self.index(10));
+
+        10 - (sum % 10)
+    }
+
+
+    fn index(&self, index: usize) -> u8 {
+        let value = self.bank_code.clone() + &self.serial_number.clone();
+
+        let value = value.chars().nth(index);
+
+        match value {
+            Some(index_value) => {
+                if !index_value.is_numeric() {
+                    panic!("Invalid characters detected in NUBAN digits.");
+                }
+
+                // Return the given value at specified index
+                index_value.to_digit(10).unwrap_or_default() as u8
+            }
+
+            None => 0,
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::Nuban;
+
+    #[test]
+    fn generated_nuban_is_valid() {
+        let mut nuban_no = Nuban::new("011", "000001457");
+
+        assert_eq!(nuban_no.full(), "0110000014579");
+    }
+
+    #[test]
+    fn nuban_check_digit_is_valid() {
+        let nuban_no = Nuban::new("011", "000001457");
+
+        assert_eq!(nuban_no.check_digit(), 9);
+    }
+}
