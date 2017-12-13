@@ -1,3 +1,12 @@
+//! # nuban_rust
+//!
+//! A rust crate for validating Nigerian Uniform Bank Account Number(NUBAN)
+//!
+
+
+///
+/// Contains details of account number, which includes **bank code**, and **serial number**
+///
 #[derive(Debug)]
 pub struct Nuban {
     bank_code: String,
@@ -5,6 +14,17 @@ pub struct Nuban {
 }
 
 impl Nuban {
+    /// Create new instance of ```Struct Nuban```
+    ///
+    /// <br>
+    /// # Examples
+    ///
+    /// ```
+    /// let mut nuban_no = Nuban::new("011", "000001457");
+    /// ```
+    /// <br>
+    /// <br>
+    /// 
     pub fn new(bankcode: &str, serialnumber: &str) -> Nuban {
         Nuban {
             bank_code: String::from(bankcode),
@@ -12,7 +32,19 @@ impl Nuban {
         }
     }
 
-
+    /// Produces the fully valid **NUBAN (including check digit)** from the previously given struct value
+    /// 
+    /// <br>
+    /// # Examples
+    /// 
+    /// ```
+    /// let mut nuban_no = Nuban::new("011", "000001457");
+    /// 
+    /// assert_eq!(nuban_no.full(), "0110000014579");
+    /// ```
+    /// <br>
+    /// <br>
+    /// 
     pub fn full(&mut self) -> String {
         let full_nuban =
             self.bank_code.clone() + &self.serial_number.clone() + &self.check_digit().to_string();
@@ -20,7 +52,19 @@ impl Nuban {
         full_nuban
     }
 
-    // Returns the check digit
+    /// Returns the correct check digit for the NUBAN details given
+    /// 
+    /// <br>
+    /// # Examples
+    /// 
+    /// ```
+    /// let nuban_no = Nuban::new("011", "000001457");
+    /// 
+    /// assert_eq!(nuban_no.check_digit(), 9);
+    /// ```
+    /// <br>
+    /// <br>
+    /// 
     pub fn check_digit(&self) -> u8 {
         let mut sum: u8 = 3
             * (&self.index(0) + &self.index(2) + &self.index(3) + &self.index(5) + &self.index(6)
@@ -31,7 +75,9 @@ impl Nuban {
         10 - (sum % 10)
     }
 
-
+    /// Helps to properly index Nuban Struct just like a normal string. 
+    /// This is achieved by concatenating the ```bank_code``` and ```serial_number``` together, before indexing
+    /// 
     fn index(&self, index: usize) -> u8 {
         let value = self.bank_code.clone() + &self.serial_number.clone();
 
