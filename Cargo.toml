@@ -2,5 +2,7 @@
 name = "nuban_rust"
 version = "0.1.0"
 authors = ["Tochukwu Nkemdilim <nkemdilimtochukwu@gmail.com>"]
+descrption = "A validator and generator of Nigerian Uniform Bank Account Number(NUBAN)"
+license = "MIT"
 
 [dependencies]
