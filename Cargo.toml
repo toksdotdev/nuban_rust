@@ -13,3 +13,4 @@ readme = "README.md"
 
 [badges]
 travis-ci = { repository = "TNkemdilim/nuban_rust", branch = "master" }
+codecov = { repository = "TNkemdilim/nuban_rust", branch = "master", service = "github" }
