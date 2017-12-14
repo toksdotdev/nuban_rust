@@ -20,6 +20,9 @@ impl Nuban {
     /// # Examples
     ///
     /// ```
+    /// use nuban_rust::*;
+    /// 
+    /// 
     /// let mut nuban_no = Nuban::new("011", "000001457");
     /// ```
     /// <br>
@@ -38,6 +41,8 @@ impl Nuban {
     /// # Examples
     /// 
     /// ```
+    /// use nuban_rust::*;
+    /// 
     /// let mut nuban_no = Nuban::new("011", "000001457");
     /// 
     /// assert_eq!(nuban_no.full(), "0110000014579");
@@ -58,6 +63,8 @@ impl Nuban {
     /// # Examples
     /// 
     /// ```
+    /// use nuban_rust::*;
+    /// 
     /// let nuban_no = Nuban::new("011", "000001457");
     /// 
     /// assert_eq!(nuban_no.check_digit(), 9);
