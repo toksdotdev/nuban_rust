@@ -1,0 +1,3 @@
+var searchIndex = {};
+searchIndex["nuban_rust"] = {"doc":"nuban_rust","items":[[3,"Nuban","nuban_rust","",null,null],[11,"fmt","","",0,{"inputs":[{"name":"self"},{"name":"formatter"}],"output":{"name":"result"}}],[11,"new","","Create new instance of `Struct Nuban`",0,{"inputs":[{"name":"str"},{"name":"str"}],"output":{"name":"nuban"}}],[11,"full","","Produces the fully valid NUBAN (including check digit) from the previously given struct value",0,{"inputs":[{"name":"self"}],"output":{"name":"string"}}],[11,"check_digit","","Returns the correct check digit for the NUBAN details given",0,{"inputs":[{"name":"self"}],"output":{"name":"u8"}}]],"paths":[[3,"Nuban"]]};
+initSearch(searchIndex);
