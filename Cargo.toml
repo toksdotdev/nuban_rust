@@ -10,3 +10,6 @@ repository = "https://github.com/TNkemdilim/nuban_rust.git"
 readme = "README.md"
 
 [dependencies]
+
+[badges]
+travis-ci = { repository = "TNkemdilim/nuban_rust", branch = "master" }
