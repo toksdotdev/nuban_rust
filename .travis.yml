@@ -20,9 +20,20 @@ addons:
     - libcurl4-openssl-dev
     - libelf-dev
     - libdw-dev
+    - libssl-dev
 after_success:
 - travis-cargo --only stable doc-upload
 - travis-cargo coveralls --no-sudo
+- |
+  if [[ "$TRAVIS_RUST_VERSION" == stable ]]; then
+    bash <(curl https://raw.githubusercontent.com/xd009642/tarpaulin/master/travis-install.sh)
+    # Uncomment the following line for coveralls.io
+    cargo tarpaulin --ciserver travis-ci --coveralls $TRAVIS_JOB_ID
+
+    # Uncomment the following two lines create and upload a report for codecov.io
+    cargo tarpaulin --out Xml
+    bash <(curl -s https://codecov.io/bash)
+  fi
 notifications:
   email:
     on_success: never
