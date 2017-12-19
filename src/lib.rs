@@ -3,6 +3,7 @@
 //! A rust crate for validating Nigerian Uniform Bank Account Number(NUBAN)
 //!
 
+//use std::ops::Index;
 
 ///
 /// Contains details of account number, which includes **bank code**, and **serial number**
@@ -72,12 +73,12 @@ impl Nuban {
     /// <br>
     /// <br>
     /// 
-    pub fn check_digit(&self) -> u8 {
-        let mut sum: u8 = 3
+    pub fn check_digit(&self) -> u32 {
+        let mut sum: u32 = 3
             * (&self.index(0) + &self.index(2) + &self.index(3) + &self.index(5) + &self.index(6)
-                + &self.index(8) + &self.index(9) + &self.index(11));
+                + &self.index(8) + &self.index(9) + &self.index(11)) as u32;
 
-        sum += 7 * (&self.index(1) + &self.index(4) + &self.index(7) + &self.index(10));
+        sum += 7 * (&self.index(1) + &self.index(4) + &self.index(7) + &self.index(10)) as u32;
 
         10 - (sum % 10)
     }
